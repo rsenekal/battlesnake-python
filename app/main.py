@@ -166,6 +166,7 @@ def closest_food(board):
     dests = {board.pt_distance(head, f):f for f in board.food}
     return dests[min(dests.keys())]
 
+
 def closest_head(board):
     head = board.agent_snake.head
     # print board.snakes.items()[1:]
@@ -189,37 +190,37 @@ def get_move(data, board):
     path_init, return_exists = find_disjoint_path(board, snake, food)
 
     if path_init and return_exists:
-        print 'Using optimal path'
+        print('Using optimal path')
         # logger.info('Using optimal path')
         path_final = path_init
     else:
-        print 'Not using optimal path'
+        print('Not using optimal path')
         # logger.debug('Not using optimal path')
         cut_food_path, cut_food_len, food_pt = get_cut_path(board, snake.head, food)
 
         if cut_food_len < len(cut_food_path):
-            print 'Using cut food path'
+            print('Using cut food path')
             # logger.info('Using cut food path')
             path_final = cut_food_path
         else:
-            print 'Not using cut food path'
+            print('Not using cut food path')
             # logger.debug('Not using cut food path')
             path_food_longer = get_longer_path(board, snake, food_pt, cut_food_path)
             if cut_food_len < len(path_food_longer):
                 path_final = path_food_longer
-                print 'Using longer cut food path'
+                print('Using longer cut food path')
                 # logger.info('Using longer cut food path')
             else:
-                print 'Not using longer cut food path'
+                print('Not using longer cut food path')
                 # logger.debug('Not using longer cut food path')
                 cut_tip_path, cut_tip_len, cut_tip_pt = get_cut_path(board, snake.head, snake.tip)
                 path_tip_longer = get_longer_path(board, snake, cut_tip_pt, cut_tip_path, prune_tip=True)
                 if cut_tip_len < len(path_tip_longer):
-                    print 'Using longer cut tip path'
+                    print('Using longer cut tip path')
                     # logger.info('Using longer cut tip path')
                     path_final = path_tip_longer
                 else:
-                    print 'Using init path'
+                    print('Using init path')
                     # logger.debug('Using init path')
                     path_final = path_init
 
