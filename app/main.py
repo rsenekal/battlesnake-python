@@ -81,9 +81,9 @@ def start():
             "Content-Type": "application/json"
         },
         body=json.dumps({
-            'color': '#09F779',
-            'head_type': 'smile',
-            'tail_type': 'skinny'
+            'color': '#09F779'
+            # 'head_type': 'smile',
+            # 'tail_type': 'skinny'
         })
     )
 
@@ -215,7 +215,6 @@ def get_move(data, board):
     # print food
     # enemy_head = closest_head(board)
 
-    # if snake.length >
     # find path with exits in consideration
     path_init, return_exists = find_disjoint_path(board, snake, food)
 
