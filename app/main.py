@@ -39,6 +39,10 @@ def static(path):
     return bottle.static_file(path, root='static/')
 
 
+@bottle.post('/ping')
+def ping():
+    return 200
+
 @bottle.post('/start')
 def start():
     data = bottle.request.json
@@ -55,12 +59,8 @@ def start():
 
     return {
         'color': '#09F779',
-        'secondary_color': '#0AAF58',
-        'taunt': 'I could\'ve been a doctor...',
-        'head_url': head_url,
-        'name': 'battlesnake-python',
         'head_type': 'smile',
-        'tail_type': 'skinny',
+        'tail_type': 'skinny'
     }
 
 
@@ -235,8 +235,7 @@ def move():
     board = get_board(data)
 
     return {
-        'move': get_move(data, board),
-        'taunt': 'Am I dead yet?'
+        'move': get_move(data, board)
     }
 
 
