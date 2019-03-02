@@ -81,9 +81,9 @@ def start():
             "Content-Type": "application/json"
         },
         body=json.dumps({
-            'color': '#09F779'
-            # 'head_type': 'smile',
-            # 'tail_type': 'skinny'
+            'color': '#09F779',
+            'head_type': 'smile',
+            'tail_type': 'skinny'
         })
     )
 
@@ -286,5 +286,5 @@ if __name__ == '__main__':
         application,
         host=os.getenv('IP', '0.0.0.0'),
         port=os.getenv('PORT', '8080'),
-        debug = os.getenv('DEBUG', False)
+        debug = os.getenv('DEBUG', True)
         )
