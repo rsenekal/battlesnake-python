@@ -44,22 +44,17 @@ def index():
     '''
 
 
-@bottle.route('/static/<path:path>')
-def static(path):
-    return bottle.static_file(path, root='static/')
-
-
-@bottle.post('/ping')
+@bottle.route('/ping')
 def ping():
-    return 
+    return
 
 
-@bottle.post('/end')
+@bottle.route('/end')
 def end():
     return
 
 
-@bottle.post('/start')
+@bottle.route('/start')
 def start():
     data = bottle.request.json
     game_id = data['game']['id']
@@ -254,7 +249,7 @@ def get_move(data, board):
     return next_move
 
 
-@bottle.post('/move')
+@bottle.route('/move')
 def move():
     data = bottle.request.json
     board = get_board(data)
