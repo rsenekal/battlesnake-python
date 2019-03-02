@@ -56,6 +56,7 @@ def end():
 @bottle.post('/start')
 def start():
     data = bottle.request.json
+    print(data)
     game_id = data['game_id']
     board_width = data['width']
     board_height = data['height']
