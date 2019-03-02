@@ -9,9 +9,9 @@ class Food(Point):
 
 
 class Snake(object):
-    def __init__(self, body, length, health, snake_id):
+    def __init__(self, body, health, snake_id):
         self.body = body
-        self.length = length
+        # self.length = length
         self.health = health
         self.id = snake_id
 
@@ -84,18 +84,18 @@ class Board(list):
 
 
 def _parse_food(data):
-    return [Food(point['x'], point['y']) for point in data['food']['data']]
+    return [Food(point['x'], point['y']) for point in data['food']]
 
 
 def _parse_snakes(data):
     snakes = {}
-    for snake in data['snakes']['data']:
-        body = [Point(point['x'], point['y']) for point in snake['body']['data']]
-        snakes[snake['id']] = Snake(body, snake['length'], snake['health'], snake['id'])
+    for snake in data['board']['snakes']:
+        body = [Point(point['x'], point['y']) for point in snake['body']]
+        snakes[snake['id']] = Snake(body, snake['health'], snake['id'])
     return snakes
 
 
 def get_board(data):
     snakes = _parse_snakes(data)
     food = _parse_food(data)
-    return Board(data['you']['id'], data['width'], data['height'], snakes, food)
+    return Board(data['you']['id'], data['board']['width'], data['board']['height'], snakes, food)

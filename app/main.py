@@ -1,6 +1,7 @@
 import os
 import logging
 import sys
+import json
 
 from copy import deepcopy
 
@@ -8,6 +9,7 @@ from pathfinding.core.grid import Grid
 from pathfinding.finder.a_star import AStarFinder
 
 import bottle
+from bottle import HTTPResponse
 
 from board import get_board, Point
 
@@ -34,6 +36,14 @@ def fibrange(board):
         a, b = b, a + b
 
 
+@bottle.route('/')
+def index():
+    return '''
+    Battlesnake documentation can be found at
+       <a href="https://docs.battlesnake.io">https://docs.battlesnake.io</a>.
+    '''
+
+
 @bottle.route('/static/<path:path>')
 def static(path):
     return bottle.static_file(path, root='static/')
@@ -56,10 +66,9 @@ def end():
 @bottle.post('/start')
 def start():
     data = bottle.request.json
-    print(data)
-    game_id = data['game_id']
-    board_width = data['width']
-    board_height = data['height']
+    game_id = data['game']['id']
+    board_width = data['board']['width']
+    board_height = data['board']['height']
 
     head_url = '%s://%s/static/head.png' % (
         bottle.request.urlparts.scheme,
@@ -278,4 +287,5 @@ if __name__ == '__main__':
         application,
         host=os.getenv('IP', '0.0.0.0'),
         port=os.getenv('PORT', '8080'),
-        debug = True)
+        debug = os.getenv('DEBUG', False)
+        )
