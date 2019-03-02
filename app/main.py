@@ -55,8 +55,6 @@ def start():
         bottle.request.urlparts.netloc
     )
 
-    # TODO: Do things with data
-
     return {
         'color': '#09F779',
         'head_type': 'smile',
