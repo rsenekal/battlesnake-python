@@ -51,16 +51,12 @@ def static(path):
 
 @bottle.post('/ping')
 def ping():
-    return HTTPResponse(
-        status=200
-    )
+    return 
 
 
 @bottle.post('/end')
 def end():
-    return HTTPResponse(
-        status=200
-    )
+    return
 
 
 @bottle.post('/start')
