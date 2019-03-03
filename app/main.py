@@ -46,12 +46,16 @@ def index():
 
 @bottle.post('/ping')
 def ping():
-    return
+    return HTTPResponse(
+        status=200
+    )
 
 
 @bottle.post('/end')
 def end():
-    return
+    return HTTPResponse(
+        status=200
+    )
 
 
 @bottle.post('/start')
@@ -61,23 +65,23 @@ def start():
     board_width = data['board']['width']
     board_height = data['board']['height']
 
-    return HTTPResponse(
-        status=200,
-        headers={
-            "Content-Type": "application/json"
-        },
-        body=json.dumps({
-            'color': '#09F779',
-            'head_type': 'smile',
-            'tail_type': 'skinny'
-        })
-    )
+    # return HTTPResponse(
+    #     status=200,
+    #     headers={
+    #         "Content-Type": "application/json"
+    #     },
+    #     body=json.dumps({
+    #         'color': '#09F779',
+    #         'head_type': 'smile',
+    #         'tail_type': 'skinny'
+    #     })
+    # )
 
-    # return {
-    #     'color': '#09F779',
-    #     'head_type': 'smile',
-    #     'tail_type': 'skinny'
-    # }
+    return {
+        'color': '#09F779',
+        'head_type': 'smile',
+        'tail_type': 'skinny'
+    }
 
 
 def map_move(snake, point):
@@ -249,19 +253,19 @@ def move():
     data = bottle.request.json
     board = get_board(data)
 
-    return HTTPResponse(
-        status=200,
-        headers={
-            "Content-Type": "application/json"
-        },
-        body=json.dumps({
-            "move": get_move(data, board)
-        })
-    )
+    # return HTTPResponse(
+    #     status=200,
+    #     headers={
+    #         "Content-Type": "application/json"
+    #     },
+    #     body=json.dumps({
+    #         "move": get_move(data, board)
+    #     })
+    # )
 
-    # return {
-    #     'move': get_move(data, board)
-    # }
+    return {
+        'move': get_move(data, board)
+    }
 
 
 # Expose WSGI app (so gunicorn can find it)
