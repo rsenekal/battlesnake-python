@@ -84,7 +84,7 @@ class Board(list):
 
 
 def _parse_food(data):
-    return [Food(point['x'], point['y']) for point in data['food']]
+    return [Food(point['x'], point['y']) for point in data['board']['food']]
 
 
 def _parse_snakes(data):

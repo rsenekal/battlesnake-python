@@ -44,27 +44,22 @@ def index():
     '''
 
 
-@bottle.route('/ping')
+@bottle.post('/ping')
 def ping():
     return
 
 
-@bottle.route('/end')
+@bottle.post('/end')
 def end():
     return
 
 
-@bottle.route('/start')
+@bottle.post('/start')
 def start():
     data = bottle.request.json
     game_id = data['game']['id']
     board_width = data['board']['width']
     board_height = data['board']['height']
-
-    head_url = '%s://%s/static/head.png' % (
-        bottle.request.urlparts.scheme,
-        bottle.request.urlparts.netloc
-    )
 
     return HTTPResponse(
         status=200,
@@ -249,7 +244,7 @@ def get_move(data, board):
     return next_move
 
 
-@bottle.route('/move')
+@bottle.post('/move')
 def move():
     data = bottle.request.json
     board = get_board(data)
